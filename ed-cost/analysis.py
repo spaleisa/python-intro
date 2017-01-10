@@ -17,6 +17,10 @@ import pandas
 # letter. Print the result of calling your function on n_arr.
 n_arr = ["Mike", "Linus", "Grace"]
 
+#def letter(n_arr, letter):
+#    new_arr = []
+#    for name in n_arr:
+
 
 # BONUS: Do it without a loop
 
@@ -31,7 +35,7 @@ ed_data = pandas.read_csv("data/cost-data.csv", encoding="iso-8859-1")
 # Print the number of rows and columns in the data in the format
 # rows=#, cols=#
 shape = ed_data.shape
-print("rows=%d, cols=%d" % shape)
+print ("rows=%d, cols=%d" % shape)
 print()
 
 # Change the following column names in your data frame
@@ -39,6 +43,11 @@ print()
 # 2014-15 Tuition and fees  -> tuition.2014
 # Sectior name              -> sector
 # Name of institution       -> instituion
+
+ed_data.rename(columns = {'2012-13 Tuition and fees':'tuition.2012'}, inplace = True)
+ed_data.rename(columns = {'2014-15 Tuition and fees':'tuition.2014'}, inplace = True)
+ed_data.rename(columns = {'Sector name':'sector', 'Name of institution':'instituion'}, inplace = True)
+print ed_data
 
 
 # How many UNIQUE institutions are there? What data structure could you
@@ -49,7 +58,7 @@ print()
 # Hint: You can do this using pandas or stock python
 
 
-# Create a bar graph with sectors on the x axis and counts on the 
+# Create a bar graph with sectors on the x axis and counts on the
 # y axis (using plotly)
 
 
@@ -58,14 +67,15 @@ print()
 #################################################################
 
 # Filter down to Washington schools, then compute the rank for 2014
-wa_data = ed_data[ed_data.State == "WA"]
-wa_data.is_copy = False
-wa_data["tuition_rank"] = wa_data["tuition.2014"].rank(numeric_only=True)
 
-rank = wa_data[wa_data.institution ==
-               "University of Washington-Seattle Campus"].tuition_rank.iloc[0]
-print("UW 2014 Tuition Rank: %d" % rank)
-print()
+# wa_data = ed_data[ed_data.State == "WA"]
+# wa_data.is_copy = False
+# wa_data["tuition_rank"] = wa_data["tuition.2014"].rank(numeric_only=True)
+#
+# rank = wa_data[wa_data.institution ==
+#                "University of Washington-Seattle Campus"].tuition_rank.iloc[0]
+# print("UW 2014 Tuition Rank: %d" % rank)
+# print()
 
 # Which *sector* had the largest average change in tuition?
 
